@@ -9,6 +9,15 @@ My infra "stuff" :), playing around, self-hosting stuff, among other things
 Authentication & variable input is done through Terraform Cloud.
 Runs are triggered locally with state stored in the Terraform Cloud workspace, under my TF Cloud (persona) "org".
 
+So assuming the setup (secrets are added to Terraform Cloud) is done:
+
+```bash
+terraform login
+terraform init
+terraform plan
+terraform apply
+```
+
 ## Fun SSH shenanigans
 
 I like the idea of my ssh keys being in-sync with my services.
