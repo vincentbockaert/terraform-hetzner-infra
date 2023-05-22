@@ -1,6 +1,6 @@
-resource "hcloud_server" "hetzner_fedora" {
-  name        = "hetzner-fedora"
-  image       = data.hcloud_image.fedora_image.name
+resource "hcloud_server" "primary_selfhost" {
+  name        = "primary-selfhost"
+  image       = data.hcloud_image.debian_lts.name
   location = "nbg1"
   server_type = "cx21"
   firewall_ids = [
@@ -10,7 +10,7 @@ resource "hcloud_server" "hetzner_fedora" {
   ssh_keys = [for k in hcloud_ssh_key.ssh_key: k.id]
 
   public_net {
-    ipv4_enabled = false
+    ipv4_enabled = true
     ipv6_enabled = true
   }
 }
@@ -25,8 +25,8 @@ resource "hcloud_ssh_key" "ssh_key" {
   name = "GitHub SSH Key - ${random_pet.pet[each.key].id}"
 }
 
-data "hcloud_image" "fedora_image" {
-  name              = "fedora-37"
+data "hcloud_image" "debian_lts" {
+  name              = "debian-11"
   with_architecture = "x86"
   most_recent       = true
 }

@@ -36,10 +36,3 @@ resource "cloudflare_zone_settings_override" "vincentbockaert_xyz_zone-settings"
     ssl                      = "strict"
   }
 }
-
-resource "cloudflare_origin_ca_certificate" "techheresy" {
-  csr                = file("csr.pem")
-  hostnames          = var.origin_ca_hostnames
-  request_type       = "origin-rsa"
-  requested_validity = 1095
-}
