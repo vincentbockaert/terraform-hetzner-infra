@@ -40,6 +40,17 @@ resource "hcloud_firewall" "default_firewall" {
     port       = "25565"
     source_ips = var.minecraft_whitelist_cidrs
   }
+
+  // wireguard vpn
+  rule {
+    direction = "in"
+    protocol  = "tcp"
+    port      = "51820"
+    source_ips = [
+      "0.0.0.0/0",
+      "::/0"
+    ]
+  }
 }
 
 data "cloudflare_ip_ranges" "cloudflare" {}
