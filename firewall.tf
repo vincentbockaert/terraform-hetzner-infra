@@ -9,7 +9,7 @@ resource "hcloud_firewall" "default_firewall" {
     ]
   }
 
-	rule {
+  rule {
     direction  = "in"
     protocol   = "tcp"
     port       = "80"
@@ -31,6 +31,14 @@ resource "hcloud_firewall" "default_firewall" {
       "0.0.0.0/0",
       "::/0"
     ]
+  }
+
+  // minecraft
+  rule {
+    direction  = "in"
+    protocol   = "tcp"
+    port       = "25565"
+    source_ips = var.minecraft_whitelist_cidrs
   }
 }
 

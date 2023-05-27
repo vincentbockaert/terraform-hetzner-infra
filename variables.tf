@@ -3,6 +3,10 @@ variable "origin_ca_hostnames" {
 }
 
 variable "cf_account_id" {
-  type = string
+  type      = string
   sensitive = true
+}
+
+variable "minecraft_whitelist_cidrs" {
+  type = list(string)
 }
