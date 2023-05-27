@@ -1,13 +1,13 @@
 resource "hcloud_server" "primary_selfhost" {
   name        = "primary-selfhost"
   image       = data.hcloud_image.debian_lts.name
-  location = "nbg1"
-  server_type = "cx21"
+  location    = "nbg1"
+  server_type = "cx31"
   firewall_ids = [
     hcloud_firewall.default_firewall.id
   ]
 
-  ssh_keys = [for k in hcloud_ssh_key.ssh_key: k.id]
+  ssh_keys = [for k in hcloud_ssh_key.ssh_key : k.id]
 
   public_net {
     ipv4_enabled = true
@@ -20,13 +20,13 @@ resource "random_pet" "pet" {
 }
 
 resource "hcloud_ssh_key" "ssh_key" {
-  for_each = toset(data.github_user.current.ssh_keys)
+  for_each   = toset(data.github_user.current.ssh_keys)
   public_key = each.key
-  name = "GitHub SSH Key - ${random_pet.pet[each.key].id}"
+  name       = "GitHub SSH Key - ${random_pet.pet[each.key].id}"
 }
 
 data "hcloud_image" "debian_lts" {
-  name              = "debian-11"
+  name              = "fedora-38"
   with_architecture = "x86"
   most_recent       = true
 }
