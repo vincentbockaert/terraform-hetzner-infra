@@ -1,7 +1,3 @@
-# variable "hcloud_token" {
-#   sensitive = true
-# }
-
 terraform {
 
   cloud {
